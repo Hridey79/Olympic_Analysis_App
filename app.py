@@ -5,14 +5,28 @@ import plotly.express as px
 import seaborn as sns
 import plotly.figure_factory as ff
 import matplotlib.pyplot as plt
+from PIL import Image
 
 df=pd.read_csv('./datasets/summer.csv',index_col=0)
 regions=pd.read_csv('./datasets/noc_regions.csv',index_col=0)
 
 df=preprocessing.preprocessing(df,regions)
 
-st.sidebar.title("Olympics Analysis")
+st.sidebar.markdown("""
+<style>
+.big-font {
+    font-size:270% !important;
+    font-weight: bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+</style>
+""", unsafe_allow_html=True)
 
+st.sidebar.markdown('<p class="big-font">Olympics Analysis</p>',unsafe_allow_html=True)
+img=Image.open('static\Logo.png')
+st.sidebar.image(img)
 user_menu=st.sidebar.radio(
         'Select an option',
         ('Medal Tally', 'Overall Analysis', 'Country-wise Analysis', 'Athlete-wise Analysis')
